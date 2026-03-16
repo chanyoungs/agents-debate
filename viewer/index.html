@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agents Debate Viewer</title>
+    <link rel="stylesheet" href="./styles.css?v=10" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-card">
+          <p class="eyebrow">Agents Debate</p>
+          <h1 id="topic">Waiting for debate</h1>
+          <p id="status-line" class="status-line">Connect a debate file to start viewing.</p>
+        </div>
+
+        <section class="side-panel">
+          <div class="section-head">
+            <h2>Debate Path</h2>
+            <span class="section-badge">Source</span>
+          </div>
+          <form id="path-form" class="path-form">
+            <label for="path-input">JSON or Markdown file</label>
+            <div class="path-row">
+              <input id="path-input" name="path" type="text" placeholder="/path/to/debate.json" />
+              <button type="submit">Load</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="side-panel">
+          <div class="section-head">
+            <h2>State</h2>
+            <span class="section-badge">Live</span>
+          </div>
+          <dl id="state-grid" class="state-grid"></dl>
+        </section>
+
+        <section class="side-panel">
+          <div class="section-head">
+            <h2>Debaters</h2>
+            <span class="section-badge">Roster</span>
+          </div>
+          <div id="debaters" class="debaters"></div>
+        </section>
+
+        <section class="side-panel">
+          <div class="section-head">
+            <h2>Conclusion</h2>
+            <span class="section-badge">Outcome</span>
+          </div>
+          <p id="conclusion" class="conclusion empty">No conclusion yet.</p>
+        </section>
+      </aside>
+
+      <main class="chat-app">
+        <header class="chat-header">
+          <div>
+            <p class="chat-label">Live Debate Feed</p>
+            <h2>Conversation</h2>
+          </div>
+          <div class="chat-status">
+            <p id="runner-chip" class="runner-chip">Runner: unknown</p>
+            <p id="polling" class="polling-chip">Polling every 2s</p>
+          </div>
+        </header>
+
+        <section id="messages" class="messages"></section>
+        <div class="messages-footer">
+          <p id="typing-indicator" class="typing-indicator hidden"></p>
+        </div>
+
+        <div id="empty-state" class="empty-state">
+          Load a debate JSON or markdown file to see the live conversation.
+        </div>
+
+        <div id="error-state" class="error-state hidden"></div>
+
+        <section class="chat-controls">
+          <div class="section-head">
+            <h2>Controls</h2>
+            <span class="section-badge">Interactive</span>
+          </div>
+          <form id="note-form" class="note-form">
+            <div class="control-actions">
+              <button id="toggle-playback-button" type="button" class="icon-button" aria-label="Pause debate" title="Pause debate">
+                <span id="toggle-playback-icon" aria-hidden="true">||</span>
+              </button>
+            </div>
+            <input
+              id="note-input"
+              name="note"
+              type="text"
+              placeholder="Ask the moderator to focus on price, ecosystem lock-in, security, or any other angle."
+            />
+            <div class="note-actions">
+              <label class="checkbox-row">
+                <input id="pause-after-note" type="checkbox" />
+                <span>Pause after saving note</span>
+              </label>
+              <button id="note-button" type="submit">Send Note</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js?v=10" defer></script>
+  </body>
+  </html>

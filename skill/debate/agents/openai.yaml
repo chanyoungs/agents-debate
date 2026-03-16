@@ -1,0 +1,4 @@
+interface:
+  display_name: "Debate"
+  short_description: "Run live structured agent debates"
+  default_prompt: "Use $debate on /path/to/debate.md"

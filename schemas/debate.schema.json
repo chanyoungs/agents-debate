@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agents-debate.local/schemas/debate.schema.json",
+  "title": "Debate State",
+  "type": "object",
+  "required": [
+    "version",
+    "topic",
+    "moderator",
+    "debaters",
+    "rules",
+    "state",
+    "turns",
+    "conclusion"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 2
+    },
+    "topic": {
+      "type": "string",
+      "minLength": 1
+    },
+    "moderator": {
+      "type": "object",
+      "required": [
+        "instructions"
+      ],
+      "properties": {
+        "instructions": {
+          "type": "string"
+        }
+      }
+    },
+    "debaters": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "stance",
+          "role",
+          "context"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stance": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "context": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "object"
+    },
+    "state": {
+      "type": "object",
+      "required": [
+        "status",
+        "round",
+        "next_speaker",
+        "turn_count",
+        "updated_at",
+        "paused",
+        "pending_note",
+        "typing_speaker",
+        "typing_since"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "running",
+            "complete"
+          ]
+        },
+        "round": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "next_speaker": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turn_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "paused": {
+          "type": "boolean"
+        },
+        "pending_note": {
+          "type": "string"
+        },
+        "typing_speaker": {
+          "type": "string"
+        },
+        "typing_since": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "turns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "speaker",
+          "role",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "speaker": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "moderator",
+              "debater"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "conclusion": {
+      "type": "object",
+      "required": [
+        "text",
+        "timestamp"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}
